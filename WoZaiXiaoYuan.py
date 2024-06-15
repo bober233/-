@@ -56,7 +56,7 @@ def Login(headers, username, password):
 
 def testLoginStatus(headers, jws, wzxySession):
     # 用任意需要鉴权的接口即可，这里随便选了一个
-    url = "https://gw.wozaixiaoyuan.com/sign/moblie/receive/doSignByArea"
+    url = "https://gw.wozaixiaoyuan.com/sign/mobile/receive/getMySignLogs?page=1&size=10"
     headers['Host'] = "gw.wozaixiaoyuan.com"
     headers['cookie'] = f'JWSESSION={jws}'
     headers['cookie'] = f'JWSESSION={jws}'
@@ -71,7 +71,8 @@ def testLoginStatus(headers, jws, wzxySession):
         return 0
 
 def GetUnDo(headers, username):
-    url = 'https://gw.wozaixiaoyuan.com/sign/moblie/receive/doSignByArea'
+    headers = {'Host': "gw.wozaixiaoyuan.com", 'Cookie': self.cookie}
+    url = 'https://gw.wozaixiaoyuan.com/sign/mobile/receive/getMySignLogs?page=1&size=10'
     res = requests.get(url, headers=headers)
     lists = json.loads(res.text)['data']
     for list in lists['list']:
